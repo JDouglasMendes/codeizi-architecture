@@ -1,0 +1,7 @@
+- Swagger - OK
+- Serilog.Console - OK
+- AddCors - OK
+- AddHealthChecks
+--> SQL Server
+--> Health Check UI
+- AddCompresionMessages - OK
