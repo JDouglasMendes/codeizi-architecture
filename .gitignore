@@ -1,3 +1,10 @@
 
 src/Codeizi.Service.API/bin/*
 src/Codeizi.Service.API/obj/*
+src/Codeizi.Infra.Data/obj/*
+src/Codeizi.Infra.Data/bin/*
+.vs/All/v16/*
+src/Codeizi.Infra.Core/obj/*
+src/Codeizi.Infra.Core/bin/*
+.vs/All/v16/.suo
+.vs/All/v16/.suo
