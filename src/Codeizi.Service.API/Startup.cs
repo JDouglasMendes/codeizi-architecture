@@ -1,3 +1,4 @@
+using Codeizi.Service.API.Resources;
 using Codeizi.Service.API.Setups;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,14 +15,15 @@ namespace Codeizi.Service.API
         public Startup(IConfiguration configuration)
             => Configuration = configuration;
 
-        public static void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            services.
-                AddControllerAndJsonOptions()
+            services
+                .AddControllerAndJsonOptions()
+                .AddCodeiziDI()
                 .AddSwagger()
-                .AddCorsService("CodeiziCors"); // change your cors
-
-                // .AddHealthChecksProject("");
+                .AddCorsService(Constants.CorsName) // change your cors
+                .AddDbContext(Configuration)
+                .AddHealthChecksProject(Configuration);
         }
 
         public static void Configure(
@@ -35,7 +37,7 @@ namespace Codeizi.Service.API
 
             app.UseSwaggerApp();
 
-            app.UseCorsApp("CodeiziCors");
+            app.UseCorsApp(Constants.CorsName);
 
             app.UseRouting();
 

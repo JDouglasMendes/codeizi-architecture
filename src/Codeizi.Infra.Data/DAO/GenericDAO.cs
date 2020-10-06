@@ -42,5 +42,6 @@ namespace Codeizi.Infra.Data.DAO
 
         public Task Update(T entity)
             => Task.Run(() => DbSet.Update(entity));
+
     }
 }

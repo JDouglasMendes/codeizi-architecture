@@ -5,3 +5,5 @@
 --> SQL Server
 --> Health Check UI
 - AddCompresionMessages - OK
+- Ef core - OK
+- Dapper - OK

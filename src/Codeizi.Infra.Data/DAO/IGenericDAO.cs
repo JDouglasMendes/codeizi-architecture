@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Codeizi.Infra.Data.DAO
 {
-    public interface IGenericDAO<T, TKey> where T : Entity<TKey>
+    public interface IGenericDAO<T, TKey>
+        where T : Entity<TKey>
     {
         IQueryable<T> Get();
 

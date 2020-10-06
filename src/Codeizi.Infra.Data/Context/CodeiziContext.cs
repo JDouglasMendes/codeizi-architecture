@@ -25,6 +25,10 @@ namespace Codeizi.Infra.Data.Context
                                             Where(p => p.ClrType == typeof(string))))
             property.SetColumnType("varchar(100)");
 
+            modelBuilder.
+                ApplyConfigurationsFromAssembly(GetType().Assembly,
+                                                type => type.FullName.EndsWith("Map"));
+
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Codeizi.Service.API.Resources;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Codeizi.Service.API.Setups
@@ -7,12 +9,12 @@ namespace Codeizi.Service.API.Setups
     {
         public static IServiceCollection AddHealthChecksProject(
             this IServiceCollection services,
-            string connectionString)
+            IConfiguration configuration)
         {
             services.AddHealthChecks()
-                .AddSqlServer(connectionString);
+                .AddSqlServer(configuration.GetConnectionString(Constants.ConnectionName));
 
-            services.AddHealthChecksUI();
+            //services.AddHealthChecksUI();
 
             return services;
         }
@@ -20,10 +22,12 @@ namespace Codeizi.Service.API.Setups
         public static IApplicationBuilder UseHealthCheckUI(
             this IApplicationBuilder app)
         {
+            /*
             app.UseEndpoints(config =>
             {
                 config.MapHealthChecksUI();
             });
+            */
             return app;
         }
     }
