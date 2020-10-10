@@ -6,5 +6,12 @@ src/Codeizi.Infra.Data/bin/*
 .vs/All/v16/*
 src/Codeizi.Infra.Core/obj/*
 src/Codeizi.Infra.Core/bin/*
-.vs/All/v16/.suo
-.vs/All/v16/.suo
+src/Codeizi.Application/obj/*
+src/Codeizi.Application/obj/*
+src/Codeizi.Application/bin/*
+src/Codeizi.Application/obj/*
+src/Codeizi.Domain/obj/*
+src/Codeizi.Domain/bin/*
+vsix/Codeizi.VSIX.Architecture/obj/*
+vsix/Codeizi.VSIX.Architecture/bin/*
+

@@ -23,7 +23,8 @@ namespace Codeizi.Service.API
                 .AddSwagger()
                 .AddCorsService(Constants.CorsName) // change your cors
                 .AddDbContext(Configuration)
-                .AddHealthChecksProject(Configuration);
+                .AddHealthChecksProject(Configuration)
+                .AddAutoMapper();
         }
 
         public static void Configure(

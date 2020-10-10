@@ -1,8 +1,10 @@
-﻿using Codeizi.Infra.Core.MediatorBus;
+﻿using Codeizi.Infra.Core.Events;
+using Codeizi.Infra.Core.MediatorBus;
 using Codeizi.Infra.Core.Notifications;
 using Codeizi.Infra.Core.UOW;
-using MediatR;
-using System;
+using FluentValidation.Results;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Codeizi.Infra.Core.Commands
 {
@@ -10,42 +12,68 @@ namespace Codeizi.Infra.Core.Commands
     {
         private readonly IUnitOfWork _uow;
         protected IMediatorHandler Bus { get; }
-        private readonly DomainNotificationHandler _notifications;
+        private readonly List<Event> events;
+        private readonly List<DomainNotification> domainNotifications;
 
         protected CommandHandler(
             IUnitOfWork uow,
-            IMediatorHandler bus,
-            INotificationHandler<DomainNotification> notifications)
+            IMediatorHandler bus)
+            : this()
         {
             _uow = uow;
-            _notifications = (DomainNotificationHandler)notifications;
             Bus = bus;
         }
 
-        protected void NotifyValidationErrors(Command message)
+        private CommandHandler()
         {
-            foreach (var error in message.ValidationResult.Errors)
-                Bus.RaiseEvent(new DomainNotification(message.MessageType, error.ErrorMessage));
+            events = new List<Event>();
+            domainNotifications = new List<DomainNotification>();
         }
 
-        public async System.Threading.Tasks.Task<bool> CommitAsync()
-        {
-            if (_notifications.HasNotifications())
-                return true;
+        protected void AddEvent(Event @event)
+            => events.Add(@event);
 
+        protected void NotifyUser(
+            string key,
+            string message)
+            =>
+            domainNotifications.Add(new DomainNotification(key, message));
+
+        public static ValidationResult Ok()
+            => new ValidationResult();
+
+        public static ValidationResult Error(
+            string message,
+            string property)
+            => new ValidationResult(new List<ValidationFailure>
+            {
+                new ValidationFailure(property, message)
+            });
+
+        public async Task<ValidationResult> CommitAsync()
+        {
             try
             {
                 if (await _uow.Commit())
-                    return true;
+                {
+                    events.ForEach(async @event =>
+                    {
+                        await Bus.RaiseEvent(@event);
+                    });
 
-                await Bus.RaiseEvent(new DomainNotification("Commit", "Failure on commit"));
-                return false;
+                    domainNotifications.ForEach(async notification =>
+                    {
+                        await Bus.RaiseEvent(notification);
+                    });
+
+                    return Ok();
+                }
+                return Error("Failure in commit, please try again", "Commit");
             }
 #pragma warning disable CA1031 // Do not catch general exception types
-            catch (Exception ex)
+            catch
             {
-                await Bus.RaiseEvent(new DomainNotification("Commit", $"MESSAGE:{ex.Message}"));
-                return false;
+                return Error("Error in commit Action, please try again", "Commit");
             }
 #pragma warning restore CA1031 // Do not catch general exception types
         }

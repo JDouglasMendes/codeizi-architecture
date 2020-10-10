@@ -10,7 +10,9 @@ namespace Codeizi.Infra.Core.Notifications
         public string Value { get; private set; }
         public int Version { get; private set; }
 
-        public DomainNotification(string key, string value)
+        public DomainNotification(
+            string key,
+            string value)
         {
             DomainNotificationId = Guid.NewGuid();
             Version = 1;
