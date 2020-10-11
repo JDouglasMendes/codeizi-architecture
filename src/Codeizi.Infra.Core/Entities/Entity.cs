@@ -2,6 +2,6 @@
 {
     public abstract class Entity<TKey>
     {
-        protected TKey Id { get; }
+        public TKey Id { get; }
     }
 }

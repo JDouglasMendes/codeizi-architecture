@@ -19,6 +19,7 @@ namespace Codeizi.Service.API
         {
             services
                 .AddControllerAndJsonOptions()
+                .AddMediator()
                 .AddCodeiziDI()
                 .AddSwagger()
                 .AddCorsService(Constants.CorsName) // change your cors

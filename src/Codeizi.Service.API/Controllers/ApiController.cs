@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,19 @@ namespace Codeizi.Service.API.Controllers
             {
                 { "Messages", _errors.ToArray() }
             }));
+        }
+
+        protected ActionResult CustomResponse(ValidationResult validationResult)
+        {
+            if (validationResult.IsValid)
+                return Ok(new Response());
+
+            var response = new Response();
+
+            foreach (var item in validationResult.Errors)
+                response.AddErros(item.PropertyName, item.ErrorMessage);
+
+            return BadRequest(response);
         }
 
         protected ActionResult CustomResponse(

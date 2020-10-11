@@ -14,4 +14,7 @@ src/Codeizi.Domain/obj/*
 src/Codeizi.Domain/bin/*
 vsix/Codeizi.VSIX.Architecture/obj/*
 vsix/Codeizi.VSIX.Architecture/bin/*
-
+src/Codeizi.Infra.Bus/bin/*
+src/Codeizi.Infra.Bus/obj/*
+tests/Codeizi.Integration.Test/bin/*
+tests/Codeizi.Integration.Test/obj/*

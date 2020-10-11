@@ -7,6 +7,7 @@
         public string PostalCode { get; }
         public string Street { get; }
 
+        protected Address() { }
         public Address(
             string city,
             string state,

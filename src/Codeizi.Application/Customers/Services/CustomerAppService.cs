@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Codeizi.Application.ComplexExample.Customers.Contracts;
 using Codeizi.Application.ComplexExample.Customers.ViewModels;
-using Codeizi.DI.Anotations;
+using Codeizi.DI.Helper.Anotations;
 using Codeizi.Domain.Customers.Commands;
 using Codeizi.Infra.Core.MediatorBus;
 using FluentValidation.Results;
@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace Codeizi.Application.ComplexExample.Customers.Services
 {
-    [InjectableScoped]
+    [Injectable(typeof(ICustomerAppService),
+                typeof(CustomerAppService))]
     public class CustomerAppService : ICustomerAppService
     {
         private readonly IMapper _mapper;
@@ -29,10 +30,11 @@ namespace Codeizi.Application.ComplexExample.Customers.Services
             await _mediator.
                 SendCommand(_mapper.Map<RegisterNewCustomerCommand>(customerAddressViewModel));
 
-        public Task<ValidationResult> Register(
+        public async Task<ValidationResult> Register(
             CustomerViewModel customerViewModel)
         {
-            throw new NotImplementedException();
+            return await _mediator.
+                SendCommand(_mapper.Map<RegisterNewCustomerCommand>(customerViewModel));
         }
     }
 }

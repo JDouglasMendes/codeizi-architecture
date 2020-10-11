@@ -1,8 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20201011111031_InitialCreate.cs" />
+    <Compile Remove="Migrations\20201011111031_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20201011113852_AddIndexForCustomer.cs" />
+    <Compile Remove="Migrations\20201011113852_AddIndexForCustomer.Designer.cs" />
+    <Compile Remove="Migrations\20201011114045_AddIndexForCustomer.cs" />
+    <Compile Remove="Migrations\20201011114045_AddIndexForCustomer.Designer.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Codeizi.DI" Version="1.0.1" />
@@ -16,11 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Maps\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Codeizi.Domain\Codeizi.Domain.csproj" />
     <ProjectReference Include="..\Codeizi.Infra.Core\Codeizi.Infra.Core.csproj" />
   </ItemGroup>
 

@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Codeizi.DI" Version="1.0.1" />
-    <PackageReference Include="FluentValidation" Version="9.2.2" />
     <PackageReference Include="MediatR" Version="8.2.0" />
   </ItemGroup>
 

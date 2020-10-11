@@ -18,7 +18,7 @@ namespace Codeizi.Domain.Customers.Commands
 
         public override bool IsValid()
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }

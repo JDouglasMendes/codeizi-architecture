@@ -18,6 +18,8 @@ namespace Codeizi.Domain.Customers
             Document = document;
         }
 
+        protected Customer() { }
+
         public void AddAddress(Address address)
         {
             Address = address;

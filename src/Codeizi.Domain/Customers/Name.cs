@@ -1,9 +1,11 @@
 ﻿namespace Codeizi.Domain.ComplexExample.Customers
 {
-    public sealed class Name
+    public class Name
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
+
+        protected Name() { }
 
         public Name(
             string firstName,

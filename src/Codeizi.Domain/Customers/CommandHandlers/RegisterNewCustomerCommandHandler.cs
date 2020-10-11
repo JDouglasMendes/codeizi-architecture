@@ -1,4 +1,5 @@
-﻿using Codeizi.Domain.ComplexExample.Customers.Repository;
+﻿using Codeizi.DI.Helper.Anotations;
+using Codeizi.Domain.ComplexExample.Customers.Repository;
 using Codeizi.Domain.Customers.Commands;
 using Codeizi.Infra.Core.Commands;
 using Codeizi.Infra.Core.MediatorBus;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace Codeizi.Domain.Customers.CommandHandlers
 {
+    [Injectable(typeof(IRequestHandler<RegisterNewCustomerCommand, ValidationResult>),
+                typeof(RegisterNewCustomerCommandHandler))]
     public class RegisterNewCustomerCommandHandler
         : CommandHandler,
          IRequestHandler<RegisterNewCustomerCommand, ValidationResult>
@@ -34,7 +37,7 @@ namespace Codeizi.Domain.Customers.CommandHandlers
 
             var customer = CustomerFactory.New(request);
 
-            await _customer.AddCustomer(customer);
+            await _customer.Register(customer);
 
             return await CommitAsync();
         }

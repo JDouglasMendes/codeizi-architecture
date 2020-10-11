@@ -4,7 +4,9 @@ using MediatR;
 
 namespace Codeizi.Infra.Core.Commands
 {
-    public abstract class Command : Message, IRequest<ValidationResult>
+    public abstract class Command : Message,
+        IRequest<ValidationResult>,
+        IBaseRequest
     {
         public ValidationResult ValidationResult { get; set; }
 

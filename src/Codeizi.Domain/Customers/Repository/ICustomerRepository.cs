@@ -6,8 +6,8 @@ namespace Codeizi.Domain.ComplexExample.Customers.Repository
 {
     public interface ICustomerRepository
     {
-        Task<Customer> AddCustomer(Customer customer);
+        Task Register(Customer customer);
 
-        Task<Customer> AddOrUpdateAdress(Guid id, Address address);
+        Task Update(Customer customer);
     }
 }
