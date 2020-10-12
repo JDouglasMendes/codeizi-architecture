@@ -3,7 +3,9 @@
     <Metadata>
         <Identity Id="Codeizi.VSIX.Architecture.0fbce564-d625-4a25-b7d3-cb0653999118" Version="1.0" Language="en-US" Publisher="Douglas Aleixo Mendes" />
         <DisplayName>Codeizi.VSIX.Architecture</DisplayName>
-        <Description>Empty VSIX Project.</Description>
+        <Description xml:space="preserve">Template project por architecture</Description>
+        <MoreInfo>https://github.com/JDouglasMendes/codeizi-architecture</MoreInfo>
+        <Icon>ico.png</Icon>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
@@ -12,8 +14,7 @@
         <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
     </Dependencies>
     <Assets>
-        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Codeizi.Service.API.zip" />
-        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Codeizi.Application.zip" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Codeizi Template.zip" />
     </Assets>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[16.0,17.0)" DisplayName="Visual Studio core editor" />

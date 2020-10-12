@@ -18,3 +18,6 @@ src/Codeizi.Infra.Bus/bin/*
 src/Codeizi.Infra.Bus/obj/*
 tests/Codeizi.Integration.Test/bin/*
 tests/Codeizi.Integration.Test/obj/*
+export-templates/*
+.vs/All/DesignTimeBuild/.dtbcache.v2
+vsix/Codeizi.VSIX.Architecture/ProjectTemplates/*
